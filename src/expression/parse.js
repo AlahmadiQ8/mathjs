@@ -22,7 +22,8 @@ const dependencies = [
   'ParenthesisNode',
   'RangeNode',
   'RelationalNode',
-  'SymbolNode'
+  'SymbolNode',
+  'IfElseNode'
 ]
 
 export const createParse = /* #__PURE__ */ factory(name, dependencies, ({
@@ -170,7 +171,11 @@ export const createParse = /* #__PURE__ */ factory(name, dependencies, ({
     and: true,
     xor: true,
     or: true,
-    not: true
+    not: true,
+    if: true,
+    else: true,
+    'else if': true,
+    end: true
   }
 
   const CONSTANTS = {

@@ -38,5 +38,6 @@ export {
   isResultSet,
   isSparseMatrix,
   isSymbolNode,
-  isUnit
+  isUnit,
+  isIfElseNode
 } from '../utils/is'

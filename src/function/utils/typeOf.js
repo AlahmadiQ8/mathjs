@@ -41,6 +41,7 @@ export const createTypeOf = /* #__PURE__ */ factory(name, dependencies, ({ typed
    * math.ConstantNode            | `'ConstantNode'`            | `math.typeOf(math.parse('2.3'))`
    * math.FunctionAssignmentNode  | `'FunctionAssignmentNode'`  | `math.typeOf(math.parse('f(x)=x^2'))`
    * math.FunctionNode            | `'FunctionNode'`            | `math.typeOf(math.parse('sqrt(4)'))`
+   * math.IfElseNode              | `'IfElseNode'`              | `math.typeOf(math.parse('if true x = 3 end'))`
    * math.IndexNode               | `'IndexNode'`               | `math.typeOf(math.parse('A[2]').index)`
    * math.ObjectNode              | `'ObjectNode'`              | `math.typeOf(math.parse('{a:2}'))`
    * math.ParenthesisNode         | `'ParenthesisNode'`         | `math.typeOf(math.parse('(2+3)'))`

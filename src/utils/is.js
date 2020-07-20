@@ -167,6 +167,10 @@ export function isSymbolNode (x) {
   return (x && x.isSymbolNode === true && x.constructor.prototype.isNode === true) || false
 }
 
+export function isIfElseNode (x) {
+  return (x && x.isIfElseNode === true && x.constructor.prototype.isNode === true) || false
+}
+
 export function isChain (x) {
   return (x && x.constructor.prototype.isChain === true) || false
 }

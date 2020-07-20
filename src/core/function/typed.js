@@ -73,7 +73,8 @@ import {
   isString,
   isSymbolNode,
   isUndefined,
-  isUnit
+  isUnit,
+  isIfElseNode
 } from '../../utils/is'
 import typedFunction from 'typed-function'
 import { digits } from '../../utils/number'
@@ -146,6 +147,7 @@ export const createTyped = /* #__PURE__ */ factory('typed', dependencies, functi
     { name: 'ParenthesisNode', test: isParenthesisNode },
     { name: 'RangeNode', test: isRangeNode },
     { name: 'SymbolNode', test: isSymbolNode },
+    { name: 'IfElseNode', test: isIfElseNode },
 
     { name: 'Object', test: isObject } // order 'Object' last, it matches on other classes too
   ]

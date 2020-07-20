@@ -42,7 +42,8 @@ import {
   isString,
   isSymbolNode,
   isUndefined,
-  isUnit
+  isUnit,
+  isIfElseNode
 } from '../utils/is'
 import { ArgumentsError } from '../error/ArgumentsError'
 import { DimensionError } from '../error/DimensionError'
@@ -138,6 +139,7 @@ export function create (factories, config) {
     isParenthesisNode,
     isRangeNode,
     isSymbolNode,
+    isIfElseNode,
 
     isChain
   })
