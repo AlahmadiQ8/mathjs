@@ -88,7 +88,7 @@ export const createIfElseNode = /* #__PURE__ */ factory(name, dependencies, ({ R
     for (let i = 0; i < this.conditions.length; i++) {
       if (i === 0) {
         callback(this.conditions[i], 'ifCondition', this)
-        callback(this.blockNodes[i], 'ifBlock')
+        callback(this.blockNodes[i], 'ifBlock', this)
       } else {
         callback(this.conditions[i], 'elseIfCondition[' + i + ']', this)
         callback(this.blockNodes[i], 'elseIfBlock[' + i + ']', this)
