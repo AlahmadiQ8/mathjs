@@ -168,4 +168,68 @@ describe('IfElseNode', function () {
     assert.strictEqual(nodes[3], a2)
     assert.strictEqual(nodes[4], a3)
   })
+
+  it('should map a IfElseNode', function () {
+    const n = new IfElseNode([ifTrueCondition, ifTrueCondition], [a1, a1, a1])
+    const nodes = []
+    const paths = []
+    const e = new AssignmentNode(new SymbolNode('a'), new ConstantNode(9))
+    
+    const f = n.map(function (node, path, parent) {
+      nodes.push(node)
+      paths.push(path)
+      assert.strictEqual(parent, n)
+
+      return node instanceof AssignmentNode ? e : node
+    })
+
+    assert.strictEqual(nodes.length, 5)
+    assert.strictEqual(nodes[0], ifTrueCondition)
+    assert.strictEqual(nodes[1], ifTrueCondition)
+    assert.strictEqual(nodes[2], a1)
+    assert.strictEqual(nodes[3], a1)
+    assert.strictEqual(nodes[4], a1)
+
+    
+    assert.notStrictEqual(f, n)
+    assert.strictEqual(f.blockNodes[0], e)
+    assert.strictEqual(f.blockNodes[1], e)
+    assert.strictEqual(f.blockNodes[2], e)
+  })
+
+  it('should throw an error when the map callback does not return a node', function () {
+    const n = new IfElseNode([ifTrueCondition], [a1, a2])
+
+    assert.throws(function () {
+      n.map(function () {})
+    }, /Callback function must return a Node/)
+  })
+
+  it("should transform IfElseNode conditions", () => {
+    const n = new IfElseNode([ifTrueCondition, ifTrueCondition], [a1, a1, a1])
+    // new ConstantNode(true)
+    const f = n.transform(function (node) {
+      return node instanceof ConstantNode && node.value === true
+        ? ifFalseCondition
+        : node;
+    })
+    
+    assert.notStrictEqual(f, n)
+    assert.deepStrictEqual(f.conditions, [ifFalseCondition, ifFalseCondition])
+    assert.deepStrictEqual(f.blockNodes, [a1, a1, a1])
+  })
+  
+  it("should transform IfElseNode blocks", () => {
+    const n = new IfElseNode([ifTrueCondition, ifTrueCondition], [a1, a1, a1])
+    // new ConstantNode(true)
+    const f = n.transform(function (node) {
+      return node instanceof AssignmentNode && node.value === true
+        ? ifFalseCondition
+        : node;
+    })
+    
+    assert.notStrictEqual(f, n)
+    assert.deepStrictEqual(f.conditions, [ifFalseCondition, ifFalseCondition])
+    assert.deepStrictEqual(f.blockNodes, [a1, a1, a1])
+  })
 })
